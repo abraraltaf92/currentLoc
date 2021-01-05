@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,14 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
             accentColor: Colors.blueGrey,
           ),
-          home: Wrapper(),
+          home: AnimatedSplashScreen(
+            splash: Image.asset(
+              'assets/images/logo.png',
+            ),
+            nextScreen: Wrapper(),
+            splashTransition: SplashTransition.sizeTransition,
+            backgroundColor: Colors.blueGrey,
+          ),
         ));
   }
 }
