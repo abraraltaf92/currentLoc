@@ -19,6 +19,32 @@ class _RegisterState extends State<Register> {
   String error_2 = '';
   bool _passwordVisible = true;
   bool loading = false;
+  final _emailIdController = TextEditingController(text: '');
+  final _passwordController = TextEditingController(text: '');
+  final _confirmPasswordController = TextEditingController(text: '');
+  String validateEmail(String value) {
+    Pattern pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = new RegExp(pattern);
+    if (value.isEmpty || !regex.hasMatch(value))
+      return 'Enter Valid Email Id!!!';
+    else
+      return null;
+  }
+
+  String validatePassword(String value) {
+    if (value.trim().isEmpty || value.length < 6 || value.length > 14) {
+      return 'Minimum 6 & Maximum 14 Characters!!!';
+    }
+    return null;
+  }
+
+  String validateConfirmPassword(String value) {
+    if (value.trim() != _passwordController.text.trim()) {
+      return 'Password Mismatch!!!';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +107,7 @@ class _RegisterState extends State<Register> {
                       child: Column(
                         children: <Widget>[
                           TextFormField(
+                            controller: _emailIdController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Email',
@@ -89,8 +116,9 @@ class _RegisterState extends State<Register> {
                               ),
                               hintText: 'Enter you email address',
                             ),
-                            validator: (val) =>
-                                val.isEmpty ? 'Enter an email' : null,
+                            validator: validateEmail,
+                            // (val) =>
+                            //     val.isEmpty ? 'Enter an email' : null,
                             onChanged: (val) {
                               setState(() {
                                 email = val;
@@ -101,6 +129,7 @@ class _RegisterState extends State<Register> {
                             height: 20.0,
                           ),
                           TextFormField(
+                            controller: _passwordController,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Password',
@@ -118,9 +147,10 @@ class _RegisterState extends State<Register> {
                                     });
                                   },
                                 )),
-                            validator: (val) => val.length < 6
-                                ? 'Enter a password 6+ chars long'
-                                : null,
+                            validator: validatePassword,
+                            // (val) => val.length < 6
+                            //     ? 'Enter a password 6+ chars long'
+                            //     : null,
                             obscureText: _passwordVisible,
                             onChanged: (val) {
                               setState(() {
@@ -132,6 +162,7 @@ class _RegisterState extends State<Register> {
                             height: 20.0,
                           ),
                           TextFormField(
+                            controller: _confirmPasswordController,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Re-Password',
