@@ -1,6 +1,6 @@
-import 'package:ooptech/authenticate.dart';
-import 'package:ooptech/home.dart';
-import 'package:ooptech/user.dart';
+import 'package:ooptech/screens/authenticate/authenticate.dart';
+import 'package:ooptech/screens/home.dart';
+import 'package:ooptech/modals/user.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';

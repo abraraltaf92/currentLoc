@@ -2,9 +2,9 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ooptech/auth.dart';
-import 'package:ooptech/user.dart';
-import 'package:ooptech/wrapper.dart';
+import 'package:ooptech/services/auth.dart';
+import 'package:ooptech/modals/user.dart';
+import 'package:ooptech/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
