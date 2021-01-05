@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ooptech/authenticate.dart';
 import 'package:ooptech/home.dart';
 import 'package:ooptech/user.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +11,12 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
+  @override
+  void initState() {
+    super.initState();
+    Permission.location.request();
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<TheUser>(context);

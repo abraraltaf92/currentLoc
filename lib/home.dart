@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                     border: Border.all(width: 3.0),
                     borderRadius: BorderRadius.circular(7.0)),
-                width: MediaQuery.of(context).size.width * 0.8,
+                width: MediaQuery.of(context).size.width * 0.9,
                 height: MediaQuery.of(context).size.height * 0.7,
                 padding: EdgeInsets.all(5.0),
                 child: GoogleMap(
@@ -97,11 +97,17 @@ class _HomeState extends State<Home> {
                   myLocationEnabled: true,
                   zoomControlsEnabled: true,
                   zoomGesturesEnabled: true,
+                  compassEnabled: true,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text("App Created By Abrar Altaf Lone"),
+              ),
+              SizedBox(height: 35),
+              Text(
+                "Note : Make Sure Location Permission Is Enabled",
+                style: TextStyle(color: Colors.red),
               )
             ],
           ),
