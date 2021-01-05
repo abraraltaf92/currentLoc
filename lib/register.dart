@@ -171,7 +171,9 @@ class _RegisterState extends State<Register> {
                     ),
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        loading = true;
+                        setState(() {
+                          loading = true;
+                        });
                         dynamic userCredential = await _auth
                             .registerWithEmailAndPassword(email, password);
                         if (userCredential == null) {
@@ -204,11 +206,15 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 10),
                   GestureDetector(
                     onTap: () async {
+                      setState(() {
+                        loading = true;
+                      });
                       dynamic user = await _auth.signInWithGoogle();
 
                       // print('down user: $user BYE BYE');
                       if (user == null) {
                         setState(() {
+                          loading = false;
                           error_2 = ' Google Authentication failed! ';
                         });
                       }
