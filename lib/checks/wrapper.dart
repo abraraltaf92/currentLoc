@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ooptech/screens/authenticate/authenticate.dart';
+import 'package:ooptech/checks/authenticate.dart';
 import 'package:ooptech/screens/home.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
