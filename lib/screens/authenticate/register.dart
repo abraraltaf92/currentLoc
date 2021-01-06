@@ -57,10 +57,7 @@ class _RegisterState extends State<Register> {
               elevation: 0,
               title: Text(
                 "Create Account",
-                style: TextStyle(
-                    // fontFamily: 'Signatra',
-                    fontSize: 25.0,
-                    color: Colors.blueGrey[900]),
+                style: TextStyle(fontSize: 25.0, color: Colors.blueGrey[900]),
               ),
               actions: <Widget>[
                 FlatButton.icon(
@@ -117,8 +114,6 @@ class _RegisterState extends State<Register> {
                               hintText: 'Enter you email address',
                             ),
                             validator: validateEmail,
-                            // (val) =>
-                            //     val.isEmpty ? 'Enter an email' : null,
                             onChanged: (val) {
                               setState(() {
                                 email = val;
@@ -148,9 +143,6 @@ class _RegisterState extends State<Register> {
                                   },
                                 )),
                             validator: validatePassword,
-                            // (val) => val.length < 6
-                            //     ? 'Enter a password 6+ chars long'
-                            //     : null,
                             obscureText: _passwordVisible,
                             onChanged: (val) {
                               setState(() {
@@ -207,6 +199,7 @@ class _RegisterState extends State<Register> {
                         });
                         dynamic userCredential = await _auth
                             .registerWithEmailAndPassword(email, password);
+                        print('ye le : $userCredential');
                         if (userCredential == null) {
                           setState(() {
                             loading = false;
@@ -242,7 +235,6 @@ class _RegisterState extends State<Register> {
                       });
                       dynamic user = await _auth.signInWithGoogle();
 
-                      // print('down user: $user BYE BYE');
                       if (user == null) {
                         setState(() {
                           loading = false;

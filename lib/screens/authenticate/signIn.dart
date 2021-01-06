@@ -16,14 +16,21 @@ class _SignInState extends State<SignIn> {
   String password = '';
   String rePassword = '';
   bool loading = false;
+  bool _passwordVisible = true;
   final AuthService _auth = AuthService();
+
+  String validatePassword(String value) {
+    if (value.trim().isEmpty || value.length < 6 || value.length > 14) {
+      return 'Minimum 6 & Maximum 14 Characters!!!';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
     return loading
         ? Loading()
         : Scaffold(
-            // backgroundColor: Colors.purple[100],
             appBar: AppBar(
               backgroundColor: Theme.of(context).accentColor,
               elevation: 0,
@@ -60,7 +67,7 @@ class _SignInState extends State<SignIn> {
               ),
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
               child: Form(
-                key: _formKey, // to validate our form , to track we use it
+                key: _formKey,
                 child: Column(
                   children: [
                     SizedBox(
@@ -92,12 +99,19 @@ class _SignInState extends State<SignIn> {
                         labelStyle: TextStyle(
                           fontSize: 15.0,
                         ),
+                        suffixIcon: IconButton(
+                            icon: Icon(_passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            }),
                         hintText: 'Enter Your Password',
                       ),
-                      validator: (val) => val.length < 6
-                          ? 'Enter a password 6+ chars long'
-                          : null,
-                      obscureText: true,
+                      validator: validatePassword,
+                      obscureText: _passwordVisible,
                       onChanged: (val) {
                         setState(() {
                           password = val;
