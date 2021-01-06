@@ -132,10 +132,11 @@ class _SignInState extends State<SignIn> {
                           setState(() {
                             loading = true;
                           });
-                          dynamic userCredential = await _auth
-                              .signInWithEmailAndPassword(email, password);
-                          print(userCredential);
-                          if (userCredential == null) {
+                          dynamic user = await _auth.signInWithEmailAndPassword(
+                              email, password);
+
+                          print(user);
+                          if (user == null) {
                             setState(() {
                               loading = false;
                               error =

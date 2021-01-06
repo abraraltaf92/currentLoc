@@ -197,10 +197,9 @@ class _RegisterState extends State<Register> {
                         setState(() {
                           loading = true;
                         });
-                        dynamic userCredential = await _auth
-                            .registerWithEmailAndPassword(email, password);
-                        print('ye le : $userCredential');
-                        if (userCredential == null) {
+                        dynamic user = await _auth.registerWithEmailAndPassword(
+                            email, password);
+                        if (user == null) {
                           setState(() {
                             loading = false;
                             error_1 =

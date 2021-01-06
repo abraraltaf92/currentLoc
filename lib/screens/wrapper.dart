@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ooptech/screens/authenticate/authenticate.dart';
 import 'package:ooptech/screens/home.dart';
-import 'package:ooptech/modals/user.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<TheUser>(context);
+    final user = Provider.of<User>(context);
 
     if (user == null) {
       return Authenticate();

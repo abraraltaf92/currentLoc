@@ -1,20 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:ooptech/modals/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
-  // create user obj based on Firebase User
-  TheUser _userFromFirebaseUser(User user) {
-    return user != null ? TheUser(uid: user.uid) : null;
-  }
-
   // streams change of user state
 
-  Stream<TheUser> get user {
-    return _auth.authStateChanges().map(_userFromFirebaseUser);
+  Stream<User> get user {
+    return _auth.authStateChanges();
   }
 
   // register with mail and password
@@ -24,8 +18,7 @@ class AuthService {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       User user = userCredential.user;
-
-      return _userFromFirebaseUser(user);
+      return user;
     } catch (e) {
       print(e.toString());
       return null;
@@ -38,8 +31,7 @@ class AuthService {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = userCredential.user;
-
-      return _userFromFirebaseUser(user);
+      return user;
     } catch (e) {
       print(e.toString());
       return null;
