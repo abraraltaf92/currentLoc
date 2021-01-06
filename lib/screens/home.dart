@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   AuthService _auth = AuthService();
 
   Position currentPosition;
-  Geolocator geolocator = Geolocator();
+  // Geolocator geolocator = Geolocator(); instance can't be used in newer version
 
   void locatePosition() async {
     Position position = await Geolocator.getCurrentPosition(
@@ -74,7 +74,10 @@ class _HomeState extends State<Home> {
             children: [
               Text(
                 "Google Maps",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0,
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -84,12 +87,13 @@ class _HomeState extends State<Home> {
                     border: Border.all(width: 3.0),
                     borderRadius: BorderRadius.circular(7.0)),
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.height * 0.7,
+                height: MediaQuery.of(context).size.height * 0.6,
                 padding: EdgeInsets.all(5.0),
                 child: GoogleMap(
                   onMapCreated: (GoogleMapController controller) {
                     _controllerGoogleMap.complete(controller);
                     newGoogleMapController = controller;
+                    locatePosition();
                   },
                   mapType: MapType.normal,
                   initialCameraPosition: loc,

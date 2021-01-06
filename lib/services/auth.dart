@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-
+  String mist = '';
   // streams change of user state
 
   Stream<User> get user {
@@ -64,6 +64,7 @@ class AuthService {
       return user;
     } catch (e) {
       print(e.toString());
+      mist = e.toString();
       return null;
     }
   }
@@ -78,5 +79,11 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+
+// updating realtime error on screen
+
+  mistake() {
+    return mist;
   }
 }

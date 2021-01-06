@@ -232,6 +232,7 @@ class _RegisterState extends State<Register> {
                       setState(() {
                         loading = true;
                       });
+
                       dynamic user = await _auth.signInWithGoogle();
 
                       if (user == null) {
