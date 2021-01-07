@@ -18,6 +18,7 @@ class AuthService {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       User user = userCredential.user;
+      await user.sendEmailVerification();
       return user;
     } catch (e) {
       print(e.toString());
@@ -74,6 +75,7 @@ class AuthService {
     try {
       await _auth.signOut();
       await googleSignIn.signOut();
+
       return true;
     } catch (e) {
       print(e.toString());

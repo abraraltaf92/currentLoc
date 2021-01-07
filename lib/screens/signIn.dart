@@ -134,7 +134,6 @@ class _SignInState extends State<SignIn> {
                           });
                           dynamic user = await _auth.signInWithEmailAndPassword(
                               email, password);
-
                           if (user == null) {
                             setState(() {
                               loading = false;

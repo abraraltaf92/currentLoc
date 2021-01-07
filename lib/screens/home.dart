@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ooptech/checks/wrapper.dart';
 import 'package:ooptech/services/auth.dart';
 
 class Home extends StatefulWidget {
@@ -15,13 +16,11 @@ class _HomeState extends State<Home> {
   GoogleMapController newGoogleMapController;
   AuthService _auth = AuthService();
 
-  Position currentPosition;
   // Geolocator geolocator = Geolocator(); instance can't be used in newer version
 
   void locatePosition() async {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    currentPosition = position;
 
     LatLng latlngPosition = LatLng(position.latitude, position.longitude);
 
@@ -32,17 +31,21 @@ class _HomeState extends State<Home> {
   }
 
   static final CameraPosition loc =
-      CameraPosition(target: LatLng(34.0836708, 74.7972825), zoom: 14.0);
+      CameraPosition(target: LatLng(34.0836708, 74.7972825), zoom: 21.0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: true,
       appBar: AppBar(
+        // automaticallyImplyLeading: false,
         actions: <Widget>[
           FlatButton.icon(
             onPressed: () async {
               await _auth.signOut();
+
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => Wrapper()));
             },
             icon: Icon(
               Icons.person,

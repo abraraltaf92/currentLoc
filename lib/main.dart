@@ -20,22 +20,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
-        value: AuthService().user,
-        child: MaterialApp(
-          title: 'OopTech',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primaryColor: Colors.white,
-            accentColor: Colors.blueGrey,
+      value: AuthService().user,
+      child: MaterialApp(
+        title: 'OopTech',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: Colors.white,
+          accentColor: Colors.blueGrey,
+        ),
+        home: AnimatedSplashScreen(
+          splash: Image.asset(
+            'assets/images/logo.png',
           ),
-          home: AnimatedSplashScreen(
-            splash: Image.asset(
-              'assets/images/logo.png',
-            ),
-            nextScreen: Wrapper(),
-            splashTransition: SplashTransition.sizeTransition,
-            backgroundColor: Colors.blueGrey,
-          ),
-        ));
+          nextScreen: Wrapper(),
+          splashTransition: SplashTransition.sizeTransition,
+          backgroundColor: Colors.blueGrey,
+        ),
+      ),
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ooptech/services/auth.dart';
 import 'package:ooptech/constants/loading.dart';
@@ -12,6 +13,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  User currentUser;
   String email = '';
   String password = '';
   String rePassword = '';
@@ -194,11 +197,12 @@ class _RegisterState extends State<Register> {
                     ),
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        setState(() {
-                          loading = true;
-                        });
+                        // setState(() {
+                        //   loading = true;
+                        // });
                         dynamic user = await _auth.registerWithEmailAndPassword(
                             email, password);
+
                         if (user == null) {
                           setState(() {
                             loading = false;
