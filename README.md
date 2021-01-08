@@ -24,6 +24,7 @@ I did:
 Yet to do:
 
             Forgot/Reset Password
+            Delete Account 
             Google map already knew previous location (stored locally)
             realtime error display (debug console ones)
             
