@@ -1,7 +1,9 @@
 # ooptech
 
-BUG TO BE FIXED : on registering withb email n password credentials and  after verifying through link , app have to be restarted one two times to work! 
+BUG TO BE FIXED :
+1) on registering with email n password credentials and  after verifying through link , app have to be restarted one two times to work! 
                  (will fix it soon)
+2) if wrong email address is submitted on sign up page you'll be in a loop of verifying something that doesn't belong to oneself , lol! (will fix it too)
 
 Know your currentLocation!
 
