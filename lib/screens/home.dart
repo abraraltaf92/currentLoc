@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ooptech/checks/wrapper.dart';
 import 'package:ooptech/services/auth.dart';
 
 class Home extends StatefulWidget {
@@ -44,8 +43,8 @@ class _HomeState extends State<Home> {
             onPressed: () async {
               await _auth.signOut();
 
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Wrapper()));
+              // Navigator.of(context).pushReplacement(
+              //     MaterialPageRoute(builder: (context) => Wrapper()));
             },
             icon: Icon(
               Icons.person,

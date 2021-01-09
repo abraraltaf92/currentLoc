@@ -21,7 +21,7 @@ class _WrapperState extends State<Wrapper> {
     if (currentUser != null) {
       currentUser.sendEmailVerification();
     }
-    timer = Timer.periodic(Duration(seconds: 5), (timer) async {
+    timer = Timer.periodic(Duration(seconds: 3), (timer) async {
       checkEmailVerified();
     });
 
@@ -38,6 +38,7 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+
     if (user == null) {
       return Authenticate();
     } else {

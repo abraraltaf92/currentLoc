@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:ooptech/screens/register.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -82,7 +84,21 @@ class AuthService {
       return null;
     }
   }
+  // Reset Password
 
+  Future sendpasswordresetemail(String email) async {
+    await _auth.sendPasswordResetEmail(email: email).then((value) {
+      Get.back();
+    }).catchError((onError) => Get.snackbar(onError.message, ''));
+  }
+
+  //Delete User
+  Future deleteuseraccount() async {
+    User user = _auth.currentUser;
+
+    await user.delete().then((value) => Get.offAll(Register()));
+    Get.snackbar("Success", "User Account Deleted");
+  }
 // updating realtime error on screen
 
   mistake() {

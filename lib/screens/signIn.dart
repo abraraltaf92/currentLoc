@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:ooptech/screens/forgotPass.dart';
+
 import 'package:ooptech/services/auth.dart';
 import 'package:ooptech/constants/loading.dart';
 
@@ -121,6 +124,22 @@ class _SignInState extends State<SignIn> {
                     SizedBox(
                       height: 20.0,
                     ),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => ForgotPass(),
+                                  ),
+                                );
+                              },
+                              child: Text('Forgot Your Password? Reset Now'))
+                        ],
+                      ),
+                    ),
                     RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Text(
@@ -134,6 +153,7 @@ class _SignInState extends State<SignIn> {
                           });
                           dynamic user = await _auth.signInWithEmailAndPassword(
                               email, password);
+
                           if (user == null) {
                             setState(() {
                               loading = false;
