@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ooptech/checks/authenticate.dart';
-import 'package:ooptech/checks/emailVerification.dart';
 import 'package:ooptech/screens/home.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -18,20 +17,12 @@ class _WrapperState extends State<Wrapper> {
   Timer timer;
   @override
   void initState() {
-    if (currentUser != null) {
-      currentUser.sendEmailVerification();
-    }
-    timer = Timer.periodic(Duration(seconds: 3), (timer) async {
-      checkEmailVerified();
-    });
-
     Permission.location.request();
     super.initState();
   }
 
   @override
   void dispose() {
-    timer.cancel(); // double check
     super.dispose();
   }
 
@@ -42,16 +33,7 @@ class _WrapperState extends State<Wrapper> {
     if (user == null) {
       return Authenticate();
     } else {
-      return user.emailVerified ? Home() : VerifyScreen();
-    }
-  }
-
-  Future<void> checkEmailVerified() async {
-    if (currentUser != null) {
-      await currentUser.reload();
-      if (currentUser.emailVerified) {
-        timer.cancel();
-      }
+      return Home();
     }
   }
 }

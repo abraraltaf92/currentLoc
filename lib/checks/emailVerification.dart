@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:ooptech/checks/authenticate.dart';
+import 'package:ooptech/services/auth.dart';
 
 class VerifyScreen extends StatefulWidget {
   @override
@@ -10,8 +11,11 @@ class VerifyScreen extends StatefulWidget {
 
 class _VerifyScreenState extends State<VerifyScreen> {
   final currentUser = FirebaseAuth.instance.currentUser;
+  final _auth = AuthService();
+  final authenticate = Authenticate();
   @override
   void initState() {
+    currentUser.sendEmailVerification();
     super.initState();
   }
 
@@ -52,16 +56,27 @@ class _VerifyScreenState extends State<VerifyScreen> {
             actions: [
               FlatButton(
                 child: Text(
-                  "Close The App",
+                  "Already Verified, Sign In!",
                   style: TextStyle(color: Colors.red),
                 ),
-                onPressed: () => SystemNavigator.pop(),
+                onPressed: () async {
+                  await _auth.signOut();
+                },
+              ),
+              FlatButton(
+                child: Text(
+                  "Wrong Email Given",
+                  style: TextStyle(color: Colors.red),
+                ),
+                onPressed: () async {
+                  await _auth.deleteuseraccount();
+                },
               ),
               FlatButton(
                 child: Text("Send Link Again"),
                 onPressed: () async =>
                     await currentUser.sendEmailVerification(),
-              )
+              ),
             ],
           ),
         ],
