@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ooptech/services/auth.dart';
 
@@ -32,6 +32,50 @@ class _HomeState extends State<Home> {
   static final CameraPosition loc =
       CameraPosition(target: LatLng(34.0836708, 74.7972825), zoom: 21.0);
 
+  Widget myPopMenu() {
+    return PopupMenuButton(
+        onSelected: (value) {
+          if (value == 1) {
+            _auth.signOut();
+          }
+        },
+        itemBuilder: (context) => [
+              PopupMenuItem(
+                  value: 1,
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                        child: Icon(Icons.print),
+                      ),
+                      Text('Print')
+                    ],
+                  )),
+              PopupMenuItem(
+                  value: 2,
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                        child: Icon(Icons.share),
+                      ),
+                      Text('Share')
+                    ],
+                  )),
+              PopupMenuItem(
+                  value: 3,
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                        child: Icon(Icons.add_circle),
+                      ),
+                      Text('Add')
+                    ],
+                  )),
+            ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,22 +83,58 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         // automaticallyImplyLeading: false,
         actions: <Widget>[
-          FlatButton.icon(
-            onPressed: () async {
-              await _auth.signOut();
+          // FlatButton.icon(
+          //   onPressed: () async {
+          //     await _auth.signOut();
 
-              // Navigator.of(context).pushReplacement(
-              //     MaterialPageRoute(builder: (context) => Wrapper()));
+          //     // Navigator.of(context).pushReplacement(
+          //     //     MaterialPageRoute(builder: (context) => Wrapper()));
+          //   },
+          //   icon: Icon(
+          //     Icons.person,
+          //     color: Colors.blueGrey[100],
+          //   ),
+          //   label: Text(
+          //     "Log Out",
+          //     style: TextStyle(color: Colors.blueGrey[100]),
+          //   ),
+          // ),
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                  value: 1,
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                        child: Icon(Icons.delete),
+                      ),
+                      Text('Delete Account')
+                    ],
+                  )),
+              PopupMenuItem(
+                  value: 2,
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                        child: Icon(Icons.logout),
+                      ),
+                      Text('Log Out')
+                    ],
+                  )),
+            ],
+            onSelected: (value) async {
+              if (value == 1) {
+                await _auth.deleteuseraccount();
+                Get.snackbar('Success', 'User Account Successfully Deleted');
+              }
+              if (value == 2) {
+                await _auth.signOut();
+                Get.snackbar('Sucsess', 'Log Out Successfully');
+              }
             },
-            icon: Icon(
-              Icons.person,
-              color: Colors.blueGrey[100],
-            ),
-            label: Text(
-              "Log Out",
-              style: TextStyle(color: Colors.blueGrey[100]),
-            ),
-          ),
+          )
         ],
         title: Text(
           'OopTech',
@@ -64,7 +144,7 @@ class _HomeState extends State<Home> {
               fontSize: 50.0,
               color: Colors.blueGrey[900]),
         ),
-        centerTitle: true,
+        centerTitle: false,
         backgroundColor: Theme.of(context).accentColor,
       ),
       body: Padding(

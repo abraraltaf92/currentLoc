@@ -96,8 +96,9 @@ class AuthService {
   Future deleteuseraccount() async {
     User user = _auth.currentUser;
 
-    await user.delete().then((value) => Get.offAll(Register()));
-    Get.snackbar("Success", "User Account Deleted");
+    await user.delete();
+    // .then((value) => Get.offAll(Register()));
+    // Get.snackbar("Success", "User Account Deleted");
   }
 // updating realtime error on screen
 
