@@ -10,7 +10,7 @@ Know your currentLocation!
 
 ## Download the app from here : 
 
-   [Clink on this link](https://drive.google.com/file/d/1E0uy431gaSs-p7jjV2Ska3DyKRcA24HH/view?usp=sharing)
+   [Clink on this link](https://github.com/abraraltaf92/currentLoc/blob/main/build/app/outputs/flutter-apk/app-release.apk?raw=true)
    
 
 I did:
@@ -21,11 +21,12 @@ I did:
             Login with emal, pass
             Sign in with google
             Animated Screens
+            Forgot/Reset Password
+            Delete Account 
 
 Yet to do:
 
-            Forgot/Reset Password
-            Delete Account 
+
             Google map already knew previous location (stored locally)
             realtime error display (debug console ones)
             
