@@ -13,10 +13,7 @@ Know your currentLocation!
    [Clink on this link](http://bit.ly/3qc1CY5  )
 
 # DEMO
-<video width ="320" height="240" controls>
-  <source type ="video/mov"
-          src="https://drive.google.com/file/d/1Iovo0JsNWeMMsty_Bzi9P8Pt-sj9WF3E/view?usp=sharing">
-  </video>
+![](screenshots/demo.gif)
    
 
 I did:
