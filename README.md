@@ -1,4 +1,4 @@
-# ooptech
+# currentLoc
 
 BUG TO BE FIXED :   NO BUG AS OF YET , HOWEVER YOU CAN HAVE A LOOK
 
@@ -10,7 +10,7 @@ Know your currentLocation!
 
 ## Download the app from here : 
 
-   [Clink on this link](https://github.com/abraraltaf92/currentLoc/blob/main/build/app/outputs/flutter-apk/app-release.apk?raw=true)
+   [Clink on this link](http://bit.ly/3qc1CY5  )
    
 
 I did:
