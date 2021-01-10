@@ -11,6 +11,9 @@ Know your currentLocation!
 ## Download the app from here : 
 
    [Clink on this link](http://bit.ly/3qc1CY5  )
+
+# DEMO
+![](screenshots/demo.gif)
    
 
 I did:
